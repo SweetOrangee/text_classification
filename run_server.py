@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pickle
 
 import sys
 
-sys.path.append('./')
+sys.path.append('./maxent')
 app = Flask(__name__)
+CORS(app)
 
 def load_models():
     with open('checkpoint/maxent_M100_iter5_acc0.9.pkl', 'rb') as f:
@@ -21,10 +23,9 @@ model_dict = load_models()
 
 @app.route('/classify', methods=['GET'])
 def classify():
-    data = request.get_json()
-    text = data['text']
-    model_type = data['model_type']
-
+    text = request.args.get('text')
+    model_type = request.args.get('model_type')
+    
     if model_type == 'maxent':
         result = model_dict['maxent'].predict_texts([text]).tolist()[0]
     elif model_type == 'model2':

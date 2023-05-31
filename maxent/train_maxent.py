@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from maxent.maxent import MaxEnt
+from .maxent import MaxEnt
 from sklearn.metrics import accuracy_score
 
 train_data_path = 'yelp_review_polarity_csv/train.csv'
@@ -19,6 +19,5 @@ test_labels = np.array(test_labels) - 1
 model = MaxEnt(M=100)
 model.fit(train_texts, train_labels, test_texts, test_labels)
 
-pred = model.predict(test_texts)
-print(pred)
+pred = model.predict_texts(test_texts)
 print(accuracy_score(test_labels, pred))
