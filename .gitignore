@@ -1,0 +1,5 @@
+__pycache__
+checkpoint/*
+yelp_review_polarity_csv
+*.npy
+*.pkl
