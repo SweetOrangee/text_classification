@@ -58,7 +58,7 @@ class MaxEnt(object):
                 if acc > max_acc:
                     max_acc = acc
                     tol_count = 0
-                    self.save_model('checkpoint/maxent_M{}_iter{}_acc{:.2}.pkl'.format(self.M, i, acc))
+                    self.save_model('../checkpoint/maxent_M{}_iter{}_acc{:.2}.pkl'.format(self.M, i, acc))
                 else:
                     tol_count += 1
                     if tol_count >= 2:
